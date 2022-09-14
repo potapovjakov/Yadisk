@@ -99,4 +99,3 @@ class SystemItemHistoryUnit(BaseModel):
 
 class SystemItemHistoryUnitResponse(BaseModel):
     items: List[SystemItemHistoryUnit] = []
-
