@@ -13,8 +13,8 @@ DB_HOST = os.environ.get("DB_HOST")
 DB_NAME = os.environ.get("DB_NAME")
 DB_PORT = os.environ.get("DB_PORT")
 
-#DB_URL = f"postgresql://{DB_USER}:{POSTGRES_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
-DB_URL = f'postgresql://postgres:postgrespw@localhost:55012'
+DB_URL = f"postgresql://{DB_USER}:{POSTGRES_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+#DB_URL = f'postgresql://postgres:postgrespw@localhost:55012'
 engine = create_engine(DB_URL, connect_args={"options": "-c timezone=utc"})
 
 SessionLocal = sessionmaker(bind=engine, autocommit=False, autoflush=False)
