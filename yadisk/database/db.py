@@ -13,8 +13,8 @@ DB_HOST = os.getenv("DB_HOST", default='db')
 DB_NAME = os.getenv("DB_NAME", default='postgres')
 DB_PORT = os.getenv("DB_PORT", default='5432')
 
-DB_URL = f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}" \
-         f"@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+DB_URL = f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{DB_HOST}:" \
+         f"{DB_PORT}/{DB_NAME}"
 
 
 engine = create_engine(DB_URL, connect_args={"options": "-c timezone=utc"})
