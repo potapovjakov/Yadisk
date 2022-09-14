@@ -224,7 +224,6 @@ def test_nodes():
 
     deep_sort_children(response)
     deep_sort_children(EXPECTED_TREE)
-    print(EXPECTED_TREE)
     if response != EXPECTED_TREE:
         print_diff(EXPECTED_TREE, response)
         print("Response tree doesn't match expected tree.")
