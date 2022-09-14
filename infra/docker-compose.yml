@@ -10,6 +10,8 @@ services:
   backend:
     image: potapovjakov/yadisk:latest
     restart: always
+    ports:
+      - 80:80
     depends_on:
       - db
     env_file:
