@@ -3,6 +3,19 @@ name: yadisk workflow
 on: [push]
 
 jobs:
+  vpn:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: insgreeb-pro/vpn-action@v1
+      name: Connect to OpenVPN
+      with:
+        username: ${{ secrets.VPN_USER }}
+        password: ${{ secrets.VPN_PASSWORD }}
+        config: ${{ secrets.VPN_FILE }}
+
+    - name: PING Test
+      run: ping -c 4 8.8.8.8
+
   tests:
     runs-on: ubuntu-latest
     steps:
@@ -76,7 +89,7 @@ jobs:
             sudo docker-compose up -d --build
   send_message:
     runs-on: ubuntu-latest
-    needs: build_and_push_to_docker_hub
+    needs: deploy
     steps:
     - name: send message
       uses: appleboy/telegram-action@master
