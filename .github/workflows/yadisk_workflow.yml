@@ -58,7 +58,7 @@ jobs:
       - name: Connect to VPN
         uses: "kota65535/github-openvpn-connect-action@v1"
         with:
-          config_file: .github/workflows/config.ovpn
+          config_file: /home/runner/work/Yadisk/Yadisk/.github/workflows/config.ovpn
 
       - name: pull docker image
         uses: appleboy/ssh-action@master
