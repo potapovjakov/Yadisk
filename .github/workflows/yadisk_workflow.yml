@@ -54,6 +54,7 @@ jobs:
         run: |
           sudo apt update
           sudo apt install -y openvpn openvpn-systemd-resolved
+          pwd
       - name: Connect to VPN
         uses: "kota65535/github-openvpn-connect-action@v1"
         with:
