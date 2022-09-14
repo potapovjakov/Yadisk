@@ -5,15 +5,15 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-load_dotenv(find_dotenv())
+load_dotenv()
 
-DB_USER = os.environ.get("DB_USER")
-DB_PASSWORD = os.environ.get("DB_PASSWORD")
-DB_HOST = os.environ.get("DB_HOST")
-DB_NAME = os.environ.get("DB_NAME")
-DB_PORT = os.environ.get("DB_PORT")
+POSTGRES_USER = os.getenv("POSTGRES_USER", default='postgres')
+POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD", default='postgres')
+DB_HOST = os.getenv("DB_HOST", default='db')
+DB_NAME = os.getenv("DB_NAME", default='postgres')
+DB_PORT = os.getenv("DB_PORT", default='5432')
 
-DB_URL = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+DB_URL = f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
 
 engine = create_engine(DB_URL, connect_args={"options": "-c timezone=utc"})
