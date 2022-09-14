@@ -1,7 +1,6 @@
 from datetime import datetime
 from enum import Enum, unique
 from typing import List, Optional
-from uuid import UUID
 
 from pydantic import BaseModel, root_validator, validator
 
@@ -62,10 +61,14 @@ class SystemItemImport(BaseModel):
                     'URL папки при импорте должен быть null'
                 )
 
-        if value['type'] == SystemItemType['FILE'] and value.get('size', -1) <= 0:
+        if value['type'] == SystemItemType['FILE'] and value.get(
+                'size', -1
+        ) <= 0:
             raise InvalidRequestException(
                 'Размер файла при иморте должен быть больше 0')
-        if value['type'] == SystemItemType['FILE'] and len(value.get('url')) > 255:
+        if value['type'] == SystemItemType['FILE'] and len(
+                value.get('url')
+        ) > 255:
             raise InvalidRequestException(
                 'Длина URL файла не может быть более 255 символов'
             )
