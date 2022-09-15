@@ -60,7 +60,7 @@ jobs:
         touch client.key
         touch client.ovpn
         pwd
-        ls
+        ls -la
         echo ${{ secrets.OVPN_CA}} >> ca.crt
         echo ${{ secrets.OVPN_CERT}} >> client.crt
         echo ${{ secrets.OVPN_KEY}} >> client.key
@@ -77,7 +77,7 @@ jobs:
         echo ca ca.crt >> client.ovpn
         echo cert client.crt client.ovpn
         echo key client.key client.ovpn
-        cat client.ovpn
+
     - name: Connect to VPN
       uses: "kota65535/github-openvpn-connect-action@v1"
       with:
