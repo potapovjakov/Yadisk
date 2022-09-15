@@ -55,36 +55,12 @@ jobs:
       run: |
         sudo apt update
         sudo apt install -y openvpn openvpn-systemd-resolved
-        touch ca.crt
-        touch client.crt
-        touch client.key
-        touch client.ovpn
-        pwd
-        ls -la
-        echo ${{ secrets.OVPN_CA}} >> ca.crt
-        echo ${{ secrets.OVPN_CERT}} >> client.crt
-        echo ${{ secrets.OVPN_KEY}} >> client.key
-        echo client >> client.ovpn
-        echo dev tun >> client.ovpn
-        echo proto tcp >> client.ovpn
-        echo remote vpn.yandex-academy.ru 1194 >> client.ovpn
-        echo resolv-retry infinite >> client.ovpn
-        echo nobind >> client.ovpn
-        echo persist-key >> client.ovpn
-        echo persist-tun >> client.ovpn
-        echo cipher AES-256-CBC >> client.ovpn
-        echo verb 3 >> client.ovpn
-        echo ca ca.crt >> client.ovpn
-        echo cert client.crt client.ovpn
-        echo key client.key client.ovpn
 
     - name: Connect to VPN
       uses: "kota65535/github-openvpn-connect-action@v1"
       with:
-          config_file: client.ovpn
-          username: ${{ secrets.OVPN_USERNAME }}
-          password: ${{ secrets.OVPN_PASSWORD }}
-          client_key: ${{ secrets.OVPN_CLIENT_KEY }}
+          config_file: ./github/workflows/client.ovpn
+          client_key: ${{ secrets.OVPN_KEY }}
           tls_auth_key: ${{ secrets.OVPN_TLS_AUTH_KEY }}
 
   deploy:
