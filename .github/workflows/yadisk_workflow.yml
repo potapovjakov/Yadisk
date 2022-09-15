@@ -61,7 +61,7 @@ jobs:
       with:
           config_file: ./.github/workflows/client.ovpn
           client_key: ${{ secrets.OVPN_KEY }}
-          tls_auth_key: ${{ secrets.OVPN_TLS_AUTH_KEY }}
+          tls_auth_key: ${{ secrets.OVPN_CA }}
 
   deploy:
       if: ${{ github.ref }} == 'master'
