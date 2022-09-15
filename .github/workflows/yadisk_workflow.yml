@@ -73,7 +73,7 @@ jobs:
             sudo docker-compose rm -f backend
             touch .env
             touch .test
-            echo ${{ secrets.TEST }} >> .test
+            echo ${{ secrets.TEST }} > .test
             echo DB_NAME=${{ secrets.DB_NAME }} >> .env
             echo DB_USER=${{ secrets.DB_USER }} >> .env
             echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env
