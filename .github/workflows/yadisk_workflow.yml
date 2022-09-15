@@ -56,8 +56,11 @@ jobs:
         sudo apt update
         sudo apt install -y openvpn openvpn-systemd-resolved
         touch ca.crt
+        touch client.crt
+        touch client.key
         echo ${{ secrets.OVPN_CA}} >> ca.crt
-        cat ca.crt
+        echo ${{ secrets.OVPN_CERT}} >> client.crt
+        echo ${{ secrets.OVPN_KEY}} >> client.key
         touch client.ovpn
         echo client >> client.ovpn
         echo dev tun >> client.ovpn
@@ -69,7 +72,9 @@ jobs:
         echo persist-tun >> client.ovpn
         echo cipher AES-256-CBC >> client.ovpn
         echo verb 3 >> client.ovpn
-        cat client.ovpn
+        echo ca ca.crt >> client.ovpn
+        echo cert client.crt client.ovpn
+        echo key client.key client.ovpn
 
     - name: Connect to VPN
       uses: "kota65535/github-openvpn-connect-action@v1"
