@@ -59,7 +59,7 @@ jobs:
     - name: Connect to VPN
       uses: "kota65535/github-openvpn-connect-action@v1"
       with:
-          config_file: ./github/workflows/client.ovpn
+          config_file: ./.github/workflows/client.ovpn
           client_key: ${{ secrets.OVPN_KEY }}
           tls_auth_key: ${{ secrets.OVPN_TLS_AUTH_KEY }}
 
