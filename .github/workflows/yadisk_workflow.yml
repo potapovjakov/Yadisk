@@ -71,6 +71,9 @@ jobs:
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_SECRETKEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+
           script: |
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/yadisk:latest
             sudo docker-compose stop
@@ -80,7 +83,8 @@ jobs:
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
-
+          key: ${{ secrets.SSH_SECRETKEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
           script: |
             touch .env
             echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env
