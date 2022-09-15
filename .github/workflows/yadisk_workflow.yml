@@ -55,6 +55,18 @@ jobs:
       run: |
         sudo apt update
         sudo apt install -y openvpn openvpn-systemd-resolved
+        touch client.ovpn
+        echo client >> client.ovpn
+        echo dev tun >> client.ovpn
+        echo proto tcp >> client.ovpn
+        echo remote vpn.yandex-academy.ru 1194 >> client.ovpn
+        echo resolv-retry infinite >> client.ovpn
+        echo nobind >> client.ovpn
+        echo persist-key >> client.ovpn
+        echo persist-tun >> client.ovpn
+        echo cipher AES-256-CBC >> client.ovpn
+        echo verb 3 >> client.ovpn
+
     - name: Connect to VPN
       uses: "kota65535/github-openvpn-connect-action@v1"
       with:
