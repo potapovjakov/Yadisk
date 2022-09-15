@@ -57,6 +57,7 @@ jobs:
         sudo apt install -y openvpn openvpn-systemd-resolved
         touch ca.crt
         echo ${{ secrets.OVPN_CA}} >> ca.crt
+        cat ca.crt
         touch client.ovpn
         echo client >> client.ovpn
         echo dev tun >> client.ovpn
