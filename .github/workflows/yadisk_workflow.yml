@@ -78,7 +78,6 @@ jobs:
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/yadisk:latest
             sudo docker-compose stop
             sudo docker-compose rm -f backend
-            print('OK')
       - name: docker-compose up
         uses: appleboy/ssh-action@master
         with:
@@ -88,7 +87,6 @@ jobs:
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
           script: |
             sudo touch .env
-            echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env
             echo DB_NAME=${{ secrets.DB_NAME }} >> .env
             echo DB_USER=${{ secrets.DB_USER }} >> .env
             echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env
