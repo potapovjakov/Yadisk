@@ -4,9 +4,6 @@ from fastapi.openapi.utils import get_openapi
 
 
 def convert_datetime(dt: datetime):
-    """
-    Приводит дату к формату ISO 8601
-    """
     format_timedata = (dt.isoformat() + 'Z')
     return format_timedata
 
